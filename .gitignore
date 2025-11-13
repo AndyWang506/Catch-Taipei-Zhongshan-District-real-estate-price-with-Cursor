@@ -1,0 +1,20 @@
+# OS / editor
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.python-version
+
+# Env/secrets
+.env
+
+# Testing
+.pytest_cache/
+
+# Build artifacts
+dist/
+build/
