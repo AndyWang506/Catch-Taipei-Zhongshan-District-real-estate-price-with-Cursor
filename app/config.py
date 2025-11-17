@@ -27,6 +27,20 @@ class DeepSeekSettings:
         return f"{self.base_url.rstrip('/')}{self.chat_path}"
 
 
+@dataclass(frozen=True)
+class MCPSettings:
+    """
+    Holds configuration for the Google Maps MCP server.
+    """
+
+    url: str = "http://localhost:3000"
+    api_key: str | None = None
+
+    @property
+    def endpoint(self) -> str:
+        return f"{self.url.rstrip('/')}/mcp"
+
+
 def load_settings() -> DeepSeekSettings:
     """
     Load settings from the environment.
@@ -40,5 +54,15 @@ def load_settings() -> DeepSeekSettings:
     base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
     chat_path = os.getenv("DEEPSEEK_CHAT_PATH", "/chat/completions")
     return DeepSeekSettings(api_key=api_key, base_url=base_url, chat_path=chat_path)
+
+
+def load_mcp_settings() -> MCPSettings:
+    """
+    Load MCP settings from the environment.
+    MCP server URL and Google Maps API key are optional.
+    """
+    url = os.getenv("MCP_SERVER_URL", "http://localhost:3000")
+    api_key = os.getenv("GOOGLE_MAPS_API_KEY")
+    return MCPSettings(url=url, api_key=api_key)
 
 

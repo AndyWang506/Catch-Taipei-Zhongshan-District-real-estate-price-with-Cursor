@@ -11,6 +11,9 @@ __pycache__/
 
 # Env/secrets
 .env
+credentials/
+*.json
+!requirements.txt
 
 # Testing
 .pytest_cache/
